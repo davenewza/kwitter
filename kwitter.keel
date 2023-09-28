@@ -10,9 +10,6 @@ model Account {
         get getAccount(id)
         list listAccounts()
         create newAccount() with (username, email)
-        read eventualFeed(id) returns (FeedMessage) {
-            @permission(expression: true)
-        }
         read consistentFeed(id) returns (FeedMessage) {
             @permission(expression: true)
         }
@@ -88,14 +85,13 @@ model Tweet {
 
     actions {
         create newTweet() with (content, account.id)
-        list listTweet()
         delete deleteTweet(id)
     }
 
     // With a new tweet we need to propogate
     // it to all follower's feeds
     @on(
-        [create, delete],
+        [create],
         propogateTweet
     )
 
@@ -105,6 +101,18 @@ model Tweet {
     )
 }
 
-enum Tool {
-    Thing
+job MimickSignup {
+    @schedule("0/1 * * * ? *")
+}
+
+job MimickFollow {
+    @schedule("0/1 * * * ? *")
+}
+
+job MimickOpenFeeds {
+    @schedule("0/1 * * * ? *")
+}
+
+job MimickTweets {
+    @schedule("0/1 * * * ? *")
 }

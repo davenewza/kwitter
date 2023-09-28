@@ -1,9 +1,5 @@
 import { PropogateTweet, models } from '@teamkeel/sdk';
 
-const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
-
-
-// To learn more about events and subscribers, visit https://docs.keel.so/events
 export default PropogateTweet(async (ctx, event) => {
 
    // Add to each followers feed
