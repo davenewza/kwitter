@@ -1,0 +1,110 @@
+model Account {
+    fields {
+        username Text
+        email Text
+        following Follow[]
+        tweets Tweet[]
+    }
+
+    actions {
+        get getAccount(id)
+        list listAccounts()
+        create newAccount() with (username, email)
+        read eventualFeed(id) returns (FeedMessage) {
+            @permission(expression: true)
+        }
+        read consistentFeed(id) returns (FeedMessage) {
+            @permission(expression: true)
+        }
+        write seed(SeedMessage) returns (Any) {
+            @permission(expression: true)
+        }
+    }
+
+    @permission(
+        expression: true,
+        actions: [get, list, create, update]
+    )
+}
+
+message SeedMessage {
+    follower Text
+    users Number
+    tweets Number
+}
+
+model Follow {
+    fields {
+        follower Account @relation(following)
+        followee Account
+    }
+
+    actions {
+        create createFollow() with (follower.id, followee.id)
+    }
+
+    // With a new follow, the feed must be populated 
+    // with existing tweets
+    @on(
+        [create],
+        backPopulate
+    )
+
+    @permission(
+        expression: true,
+        actions: [get, list, create, update]
+    )
+}
+
+message FeedMessage {
+    feed Feed[]
+}
+
+model Feed {
+    fields {
+        account Account
+        username Text
+        content Text
+        tweetedAt Timestamp
+    }
+
+    actions {
+        list feed(account.id) {
+            @orderBy(tweetedAt: desc)
+            @permission(expression: true)
+        }
+    }
+}
+
+message FollowMessage {
+    accountId ID
+}
+
+model Tweet {
+    fields {
+        content Text
+        account Account
+    }
+
+    actions {
+        create newTweet() with (content, account.id)
+        list listTweet()
+        delete deleteTweet(id)
+    }
+
+    // With a new tweet we need to propogate
+    // it to all follower's feeds
+    @on(
+        [create, delete],
+        propogateTweet
+    )
+
+    @permission(
+        expression: true,
+        actions: [get, list, create, update]
+    )
+}
+
+enum Tool {
+    Thing
+}
