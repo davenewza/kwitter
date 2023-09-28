@@ -21,11 +21,11 @@ export default Seed(async (ctx, inputs) => {
     // });
 
 
-    await accounts.forEach(async function(account) {
+    for (let account of accounts) {
         for (let i = 0; i < inputs.tweets; i++) {
              await models.tweet.create({ accountId: account.id, content: "My interesting bit for today! Please like and subscribe! <3 " + i });
         }
-    });
+    }
 
     const tweetCount = await models.tweet.findMany();
     
