@@ -80,8 +80,18 @@ model Tweet {
     }
 
     actions {
-        create newTweet() with (content, account.id)
-        delete deleteTweet(id)
+        create newTweet() with (content, account.id) {
+            //@set(tweet.account = ctx.identity.account) BACKLINKS!
+            @permission(expression: ctx.isAuthenticated)
+        }
+        list myTweets() {
+            @where(tweet.account.identity == ctx.identity)
+            @orderBy(createdAt: desc)
+            @permission(expression: ctx.isAuthenticated)
+        }
+        delete deleteTweet(id) {
+            @permission(expression: ctx.isAuthenticated)
+        }
     }
 
     // With a new tweet we need to propogate
@@ -89,11 +99,6 @@ model Tweet {
     @on(
         [create],
         propogateTweet
-    )
-
-    @permission(
-        expression: true,
-        actions: [get, list, create, update]
     )
 }
 
