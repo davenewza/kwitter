@@ -1,7 +1,7 @@
 model Account {
     fields {
         username Text
-        email Text
+        identity Identity
         following Follow[]
         tweets Tweet[]
     }
@@ -9,11 +9,10 @@ model Account {
     actions {
         get getAccount(id)
         list listAccounts()
-        create newAccount() with (username, email)
-        read consistentFeed(id) returns (FeedMessage) {
-            @permission(expression: true)
+        create newAccount() with (username) {
+            @set(account.identity = ctx.identity)
         }
-        write seed(SeedMessage) returns (Any) {
+        read consistentFeed(id) returns (FeedMessage) {
             @permission(expression: true)
         }
     }
@@ -22,12 +21,6 @@ model Account {
         expression: true,
         actions: [get, list, create, update]
     )
-}
-
-message SeedMessage {
-    follower Text
-    users Number
-    tweets Number
 }
 
 model Follow {
@@ -66,9 +59,10 @@ model Feed {
     }
 
     actions {
-        list feed(account.id) {
+        list feed() {
+            @where(feed.account.identity == ctx.identity)
             @orderBy(tweetedAt: desc)
-            @permission(expression: true)
+            @permission(expression: ctx.isAuthenticated)
         }
     }
 }
@@ -101,18 +95,6 @@ model Tweet {
     )
 }
 
-job MimickSignup {
-    @schedule("0/1 * * * ? *")
-}
-
-job MimickFollow {
-    @schedule("0/1 * * * ? *")
-}
-
-job MimickOpenFeeds {
-    @schedule("0/1 * * * ? *")
-}
-
-job MimickTweets {
-    @schedule("0/1 * * * ? *")
+job Seed {
+    @permission(expression: true)
 }
