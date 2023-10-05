@@ -1,13 +1,15 @@
 model Account {
     fields {
         username Text
-        identity Identity
+        identity Identity @unique
         following Follow[]
         tweets Tweet[]
     }
 
     actions {
-        get getAccount(id)
+        get getAccount() {
+            @where(account.identity == ctx.identity)
+        }
         list listAccounts()
         create newAccount() with (username) {
             @set(account.identity = ctx.identity)
@@ -97,4 +99,33 @@ model Tweet {
 
 job Seed {
     @permission(expression: true)
+}
+
+model Retreat {
+    fields {
+        name Text
+        rooms Room[]
+        attendees Attendee[]
+    }
+}
+
+model Room {
+    fields {
+        name Text
+        retreat Retreat
+        allocatedTo Attendee?
+    }
+
+    actions {
+        update allocate(id) with (allocatedTo.id)
+    }
+
+    @unique([retreat, allocatedTo])
+}
+
+model Attendee {
+    fields {
+        name Text
+        retreat Retreat
+    }
 }
