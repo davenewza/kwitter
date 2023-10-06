@@ -13,7 +13,7 @@ model Account {
             @set(account.identity = ctx.identity)
         }
         //
-        // Gem!
+        // Retrieve the currently signed in account
         get getAccount() {
             @where(account.identity == ctx.identity)
         }
@@ -76,7 +76,6 @@ model Feed {
     }
 
     actions {
-        //
         // Neat use of relationships to filter to my feeds
         list feed() {
             @where(feed.account.identity == ctx.identity)
@@ -97,7 +96,7 @@ model Tweet {
         // This @set should be possible:
         //    @set(tweet.account = ctx.identity.account)
         // It would mean we don't need to provide account.id as input
-        // Requires: backlinks & @set to support database columns
+        // Requires: backlinks & @set to support data{base columns
         create newTweet() with (content, account.id)
         //
         // Neat use of @where and @order to get my top feed.

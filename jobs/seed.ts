@@ -1,7 +1,6 @@
 import { Seed, models, Account } from '@teamkeel/sdk';
 
 export default Seed(async (ctx) => {
-    
     // const myaccount = await models.account.findOne({ id: inputs.follower });
 
     // var accounts:Account[] = [];
