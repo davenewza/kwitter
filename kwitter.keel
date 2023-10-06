@@ -13,7 +13,9 @@ model Account {
         get getAccount() {
             @where(account.identity == ctx.identity)
         }
-        list findAccounts(username)
+        list findAccounts(username) {
+            @where(account.identity != ctx.identity)
+        }
         read consistentFeed(id) returns (FeedMessage)
     }
 
@@ -30,7 +32,7 @@ model Follow {
     }
 
     actions {
-        create createFollow() with (follower.id, followee.id)
+        create follow() with (follower.id, followee.id)
     }
 
     // With a new follow, the feed must be populated 
