@@ -42,6 +42,8 @@ model Follow {
         backPopulate
     )
 
+    @unique([follower, followee])
+
     @permission(
         expression: true,
         actions: [get, list, create, update]
