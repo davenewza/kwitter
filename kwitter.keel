@@ -7,20 +7,18 @@ model Account {
     }
 
     actions {
-        get getAccount() {
-            @where(account.identity == ctx.identity)
-        }
-        list listAccounts()
         create newAccount() with (username) {
             @set(account.identity = ctx.identity)
         }
-        read consistentFeed(id) returns (FeedMessage) {
-            @permission(expression: true)
+        get getAccount() {
+            @where(account.identity == ctx.identity)
         }
+        list findAccounts(username)
+        read consistentFeed(id) returns (FeedMessage)
     }
 
     @permission(
-        expression: true,
+        expression: ctx.isAuthenticated,
         actions: [get, list, create, update]
     )
 }
