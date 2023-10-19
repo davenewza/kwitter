@@ -43,7 +43,7 @@ model Follow {
     }
 
     actions {
-        create follow() with (follower.id, followee.id) {
+        create follow() with (followee.id) {
             @set(follow.follower = ctx.identity.account)
         }
     }
@@ -89,7 +89,7 @@ model Tweet {
     }
 
     actions {
-        create newTweet() with (content, account.id) {
+        create newTweet() with (content) {
             @set(tweet.account = ctx.identity.account)
         }
         //
