@@ -24,8 +24,8 @@ model Account {
         }
         //
         // BUG :(
-        list findUnfollowedAccounts(username?) {
-            @where(ctx.identity not in account.following.follower.identity)
+        list findUnfollowedAccounts() {
+            @where(ctx.identity in account.following.follower.identity)
         }
         read consistentFeed(id) returns (Any)
     }
@@ -43,12 +43,9 @@ model Follow {
     }
 
     actions {
-        //
-        // This @set should be possible:
-        //    @set(follow.follower.id = ctx.identity.account)
-        // It would mean we don't need to provide follower.id as input
-        // Requires: backlinks & @set to support database columns
-        create follow() with (follower.id, followee.id)
+        create follow() with (follower.id, followee.id) {
+            @set(follow.follower = ctx.identity.account)
+        }
     }
 
     // With a new follow, the feed must be populated 
@@ -92,12 +89,9 @@ model Tweet {
     }
 
     actions {
-        //
-        // This @set should be possible:
-        //    @set(tweet.account = ctx.identity.account)
-        // It would mean we don't need to provide account.id as input
-        // Requires: backlinks & @set to support data{base columns
-        create newTweet() with (content, account.id)
+        create newTweet() with (content, account.id) {
+            @set(tweet.account = ctx.identity.account)
+        }
         //
         // Neat use of @where and @order to get my top feed.
         // Paging is then done at time of request (however I often find myself wanting a @limit attribute)
