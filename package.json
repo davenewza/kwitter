@@ -18,8 +18,8 @@
   },
   "homepage": "https://github.com/davenewza/kwitter#readme",
   "dependencies": {
-    "@teamkeel/functions-runtime": "^0.369.1",
-    "@teamkeel/testing-runtime": "^0.369.1",
+    "@teamkeel/functions-runtime": "^0.368.0",
+    "@teamkeel/testing-runtime": "^0.368.0",
     "@types/node": "^18.11.18",
     "kysely": "^0.23.4",
     "node-fetch": "^3.3.0",
