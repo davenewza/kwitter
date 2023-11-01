@@ -9,6 +9,7 @@
 				"types": ["node"],
 				"allowJs": true,
 				"resolveJsonModule": true,
+				
 				"paths": {
 					"@teamkeel/sdk": ["./.build/sdk"],
 					"@teamkeel/testing": ["./.build/testing"]
