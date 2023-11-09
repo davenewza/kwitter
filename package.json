@@ -1,25 +1,8 @@
 {
   "name": "kwitter",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/davenewza/kwitter.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/davenewza/kwitter/issues"
-  },
-  "homepage": "https://github.com/davenewza/kwitter#readme",
   "dependencies": {
-    "@teamkeel/functions-runtime": "^0.370.0",
-    "@teamkeel/testing-runtime": "^0.370.0",
+    "@teamkeel/functions-runtime": "file:../keel/packages/functions-runtime",
+    "@teamkeel/testing-runtime": "file:../keel/packages/testing-runtime",
     "kysely": "^0.23.4",
     "node-fetch": "^3.3.0"
   },

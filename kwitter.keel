@@ -21,13 +21,19 @@ model Account {
         // Neat way of excluding your own records
         list findAccounts(username?) {
             @where(account.identity != ctx.identity)
+            @sortable(username)
         }
         //
-        // BUG :(
+        // Retrieve top accounts I am not following yet
         list findUnfollowedAccounts() {
             @where(ctx.identity in account.following.follower.identity)
+            @where(account != ctx.identity.account)
         }
-        read consistentFeed(id) returns (Any)
+        //
+        // Get my feed without eventual consistency
+        read consistentFeed(id?) returns (Any) {
+            @permission(expression: ctx.isAuthenticated)
+        }
     }
 
     @permission(
@@ -56,15 +62,12 @@ model Follow {
     )
 
     // Neat way of preventing duplicate follows
-    @unique([follower, followee])
+    @unique( [follower, followee ] )
 
-    @permission(
-        expression: ctx.isAuthenticated,
-        actions: [get, list, create, update]
-    )
+    @permission(expression: ctx.isAuthenticated, actions: [get, list, create, update])
+
+    @permission(expression: true, actions: [get])
 }
-
-
 
 model Feed {
     fields {
@@ -103,7 +106,7 @@ model Tweet {
         }
         delete deleteTweet(id)
     }
-
+    
     // With a new tweet we need to propogate
     // it to all follower's feeds
     @on(

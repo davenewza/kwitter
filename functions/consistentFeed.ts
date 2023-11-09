@@ -1,7 +1,7 @@
 import { ConsistentFeed, Feed, models } from '@teamkeel/sdk';
 
-export default ConsistentFeed(async (_, inputs) => {
-    const follows = await models.follow.findMany({ where: { followerId: inputs.id }});
+export default ConsistentFeed(async (ctx, _) => {
+    const follows = await models.follow.findMany({ where: { followerId: ctx.identity!.id }});
 
     const feed:Feed[] = [];
 
@@ -10,7 +10,7 @@ export default ConsistentFeed(async (_, inputs) => {
         const tweets = await models.tweet.findMany({ where: { accountId: followee!.id }});
 
         for (const t of tweets) {
-            feed.push( { id: "1", username: followee!.username, accountId: inputs.id, content: t!.content, createdAt: t.createdAt, updatedAt: t.createdAt, tweetedAt: t.createdAt });
+            feed.push( { id: "1", username: followee!.username, accountId: ctx.identity!.id, content: t!.content, createdAt: t.createdAt, updatedAt: t.createdAt, tweetedAt: t.createdAt });
         }
     }
 
