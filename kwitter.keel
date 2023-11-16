@@ -24,9 +24,9 @@ model Account {
             @sortable(username)
         }
         //
-        // Retrieve top accounts I am not following yet
+        // Retrieve accounts I am not following yet
         list findUnfollowedAccounts() {
-            @where(ctx.identity in account.following.follower.identity)
+            @where(ctx.identity not in account.following.follower.identity)
             @where(account != ctx.identity.account)
         }
         //

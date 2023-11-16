@@ -2,12 +2,12 @@ auth:
   tokens:
     accessTokenExpiry: 30
     refreshTokenExpiry: 60
-    
+
   providers:
     - type: oidc
       name: Auth0
       issuerUrl: https://dev-skhlutl45lbqkvhv.us.auth0.com/
-      clientId: 17hNx6BWSA5qofBClGUdMkbcF0dQqLKyY
+      clientId: 7hNx6BWSA5qofBClGUdMkbcF0dQqLKyY
 
     - type: google
       name: googs
