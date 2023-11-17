@@ -40,6 +40,9 @@ model Account {
         read consistentFeed(id?) returns (Any) {
             @permission(expression: ctx.isAuthenticated)
         }
+        write clean(id?) returns (Any) {
+            @permission(expression: true)
+        }
     }
 
     @permission(
@@ -86,7 +89,7 @@ model Feed {
     actions {
         // Neat use of relationships to filter to my feeds
         list feed() {
-            @where(feed.account.identity == ctx.identity)
+            @where(feed.account == ctx.identity.account)
             @orderBy(tweetedAt: desc)
             @permission(expression: ctx.isAuthenticated)
         }
