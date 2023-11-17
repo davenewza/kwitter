@@ -26,17 +26,13 @@ model Account {
         //
         // Retrieve accounts I am following
         list findFollowedAccounts() {
-            @where(
-                account in ctx.identity.account.following.followee and 
-                ctx.identity.account in ctx.identity.account.following.follower)
+            @where(account in ctx.identity.account.following.followee)
             @where(account != ctx.identity.account)
         }
         //
         // Retrieve accounts I am not following yet
         list findUnfollowedAccounts() {
-            @where(
-                account not in ctx.identity.account.following.followee and 
-                ctx.identity.account in ctx.identity.account.following.follower)
+            @where(account not in ctx.identity.account.following.followee)
             @where(account != ctx.identity.account)
         }
         //
