@@ -24,6 +24,12 @@ model Account {
             @sortable(username)
         }
         //
+        // Retrieve accounts I am following
+        list findFollowedAccounts() {
+            @where(ctx.identity in account.following.follower.identity)
+            @where(account != ctx.identity.account)
+        }
+        //
         // Retrieve accounts I am not following yet
         list findUnfollowedAccounts() {
             @where(ctx.identity not in account.following.follower.identity)
@@ -62,7 +68,7 @@ model Follow {
     )
 
     // Neat way of preventing duplicate follows
-    @unique( [follower, followee ] )
+    @unique([follower, followee])
 
     @permission(expression: ctx.isAuthenticated, actions: [get, list, create, update])
 
