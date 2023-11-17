@@ -5,6 +5,11 @@ auth:
 
   providers:
     - type: oidc
+      name: clerk
+      issuerUrl: "https://resolved-bear-86.clerk.accounts.dev"
+      clientId: "http://localhost:5173/"
+
+    - type: oidc
       name: Auth0
       issuerUrl: https://dev-skhlutl45lbqkvhv.us.auth0.com/
       clientId: 7hNx6BWSA5qofBClGUdMkbcF0dQqLKyY

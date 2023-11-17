@@ -3,6 +3,7 @@
   "dependencies": {
     "@teamkeel/functions-runtime": "^0.372.0",
     "@teamkeel/testing-runtime": "^0.372.0",
+    "async-lock": "^1.4.0",
     "kysely": "^0.23.4",
     "node-fetch": "^3.3.0"
   },
