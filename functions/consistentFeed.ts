@@ -1,6 +1,8 @@
 import { ConsistentFeed, Feed, models } from "@teamkeel/sdk";
 
 export default ConsistentFeed(async (ctx, _) => {
+
+ 
   const follows = await models.follow.findMany({
     where: { followerId: ctx.identity!.id },
   });

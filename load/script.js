@@ -6,7 +6,7 @@ import { scenario } from "k6/execution";
 import { vu } from "k6/execution";
 
 const population = 2500;
-const concurrentUsers = 25;
+const concurrentUsers = 200;
 const actionDelay = 1; // seconds between actions
 
 export const options = {
@@ -25,10 +25,10 @@ export const options = {
       executor: "ramping-vus",
       startVUs: 0,
       stages: [
-        { duration: "30s", target: concurrentUsers },
+        { duration: "60s", target: concurrentUsers },
         // { duration: "3s", target: 5 },
-        { duration: "30s", target: concurrentUsers },
-        { duration: "3s", target: 0 },
+        { duration: "600s", target: concurrentUsers },
+        { duration: "30s", target: 0 },
       ],
       // stages: [
       //     { duration: '10s', target: 30 },
@@ -47,7 +47,7 @@ export const options = {
 };
 
 const url =
-  "https://load-testing--kwitter-NhCPTR.staging.keelapps.xyz/api/json";
+  "https://load--kwitter-NhCPTR.staging.keelapps.xyz/api/json";
 
 const usernames = new SharedArray("some name", function () {
   if (users.length < population) {
