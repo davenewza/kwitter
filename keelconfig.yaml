@@ -7,7 +7,7 @@ auth:
 
   providers:
     - type: oidc
-      name: Auth0
+      name: AuthZero
       issuerUrl: https://dev-skhlutl45lbqkvhv.us.auth0.com/
       clientId: 7hNx6BWSA5qofBClGUdMkbcF0dQqLKyY
 
@@ -25,6 +25,6 @@ auth:
 
 secrets:
   - name: KEEL_AUTH_PROVIDER_SECRET_GOOGLE
-  - name: KEEL_AUTH_PROVIDER_SECRET_AUTH0
+  - name: KEEL_AUTH_PROVIDER_SECRET_AUTHZERO
   - name: KEEL_AUTH_PROVIDER_SECRET_FB
   - name: KEEL_AUTH_PROVIDER_SECRET_GITLAB
