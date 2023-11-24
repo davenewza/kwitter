@@ -1,7 +1,9 @@
 auth:
   tokens:
-    accessTokenExpiry: 30
-    refreshTokenExpiry: 60
+    accessTokenExpiry: 300
+    refreshTokenExpiry: 6000
+
+  redirectUrl: http://localhost:8000/signedin
 
   providers:
     - type: oidc
@@ -10,5 +12,13 @@ auth:
       clientId: 7hNx6BWSA5qofBClGUdMkbcF0dQqLKyY
 
     - type: google
-      name: googs
-      clientId: 865928829037-8t2ej3e40qtfb15euctqe8gmnklqmvoq.apps.googleusercontent.com
+      name: google
+      clientId: 247884616520-22ts8a09i4qrdk64fq8jrgorcn08blf8.apps.googleusercontent.com
+
+    - type: facebook
+      name: fb
+      clientId: 275725305447566
+
+    - type: gitlab
+      name: gitlab
+      clientId: 18c6dcb0ac290380a8af740fcb5a665d676e104e603008cd609ad7920785f62d
