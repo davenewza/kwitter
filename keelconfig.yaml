@@ -22,3 +22,9 @@ auth:
     - type: gitlab
       name: gitlab
       clientId: 18c6dcb0ac290380a8af740fcb5a665d676e104e603008cd609ad7920785f62d
+
+secrets:
+  - name: KEEL_AUTH_PROVIDER_SECRET_GOOGLE
+  - name: KEEL_AUTH_PROVIDER_SECRET_AUTH0
+  - name: KEEL_AUTH_PROVIDER_SECRET_FB
+  - name: KEEL_AUTH_PROVIDER_SECRET_GITLAB
