@@ -1,9 +1,10 @@
 auth:
   tokens:
-    accessTokenExpiry: 300
-    refreshTokenExpiry: 6000
+    accessTokenExpiry: 30
+    refreshTokenExpiry: 100
 
   redirectUrl: http://localhost:8000/signedin
+
 
   providers:
     - type: oidc
