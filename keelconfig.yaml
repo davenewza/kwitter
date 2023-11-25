@@ -5,7 +5,6 @@ auth:
 
   redirectUrl: http://localhost:8000/signedin
 
-
   providers:
     - type: oidc
       name: AuthZero
