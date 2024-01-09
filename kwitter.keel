@@ -96,6 +96,7 @@ model Feed {
     }
 }
 
+
 model Tweet {
     fields {
         content Text
