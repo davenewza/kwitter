@@ -1,16 +1,17 @@
 {
   "name": "kwitter",
   "dependencies": {
-    "@teamkeel/functions-runtime": "^0.374.0",
-    "@teamkeel/testing-runtime": "^0.374.0",
+    "@teamkeel/functions-runtime": "^0.375.0",
+    "@teamkeel/testing-runtime": "^0.375.0",
     "async-lock": "^1.4.0",
     "kysely": "^0.23.4",
     "node-fetch": "^3.3.0"
   },
+
   "devDependencies": {
     "@types/node": "^18.11.18",
     "tsx": "^3.12.6",
-    "typescript": "^5.3.2",
+    "typescript": "^5.3.3",
     "vitest": "^0.34.6"
   }
 }
