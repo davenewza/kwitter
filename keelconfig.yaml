@@ -24,6 +24,11 @@ auth:
       name: gitlab
       clientId: 18c6dcb0ac290380a8af740fcb5a665d676e104e603008cd609ad7920785f62d
 
+    - type: google
+      name: google_client
+      clientId: 174314733488-2n6f4a92m7232u1m8rmoa1qjofpqe49h.apps.googleusercontent.com
+      issuerUrl: https://accounts.google.com
+
 secrets:
   - name: AUTH_PROVIDER_SECRET_GOOGLE
   - name: AUTH_PROVIDER_SECRET_AUTHZERO
