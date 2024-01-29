@@ -11,19 +11,15 @@ auth:
       name: AuthZero
       issuerUrl: https://dev-skhlutl45lbqkvhv.us.auth0.com/
       clientId: 7hNx6BWSA5qofBClGUdMkbcF0dQqLKyY
-
     - type: google
       name: google
       clientId: 247884616520-22ts8a09i4qrdk64fq8jrgorcn08blf8.apps.googleusercontent.com
-
     - type: facebook
       name: fb
       clientId: 275725305447566
-
     - type: gitlab
       name: gitlab
       clientId: 18c6dcb0ac290380a8af740fcb5a665d676e104e603008cd609ad7920785f62d
-
     - type: google
       name: google_client
       clientId: 174314733488-2n6f4a92m7232u1m8rmoa1qjofpqe49h.apps.googleusercontent.com
