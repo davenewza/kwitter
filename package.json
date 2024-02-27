@@ -1,8 +1,8 @@
 {
   "name": "kwitter",
   "dependencies": {
-    "@teamkeel/functions-runtime": "^0.380.0",
-    "@teamkeel/testing-runtime": "^0.380.0",
+    "@teamkeel/functions-runtime": "^0.380.2",
+    "@teamkeel/testing-runtime": "^0.380.2",
     "kysely": "^0.23.5",
     "node-fetch": "^3.3.2"
   },
