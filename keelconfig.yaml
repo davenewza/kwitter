@@ -1,7 +1,7 @@
 auth:
   tokens:
-    accessTokenExpiry: 3000
-    refreshTokenExpiry: 6000
+    accessTokenExpiry: 60000
+    refreshTokenExpiry: 600000
     refreshTokenRotationEnabled: true
   redirectUrl: http://localhost:8000/signedin
 
