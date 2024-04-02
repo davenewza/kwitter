@@ -6,7 +6,6 @@ model Account {
         tweets Tweet[]
     }
 
-
     actions {
         //
         // The two-step process of needing to create the identity first could lead to problems.
