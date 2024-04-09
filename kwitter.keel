@@ -114,7 +114,10 @@ model Tweet {
             @where(tweet.account.identity == ctx.identity)
             @orderBy(createdAt: desc)
         }
-        delete deleteTweet(id)
+        
+        delete deleteTweet(id) {
+            @permission(expression: tweet.account == ctx.identity.account)
+        }
     }
     
     // With a new tweet we need to propogate
