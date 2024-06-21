@@ -24,7 +24,6 @@ auth:
       clientId: 174314733488-2n6f4a92m7232u1m8rmoa1qjofpqe49h.apps.googleusercontent.com
       issuerUrl: https://accounts.google.com
 
-
 secrets:
   - name: AUTH_PROVIDER_SECRET_GOOGLE
   - name: AUTH_PROVIDER_SECRET_AUTHZERO
