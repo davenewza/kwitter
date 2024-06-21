@@ -1,5 +1,5 @@
 environment:
-  test: defaultconfig
+  test: prodconfig
 
 auth:
   tokens:
