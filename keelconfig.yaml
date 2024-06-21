@@ -1,5 +1,7 @@
 environment:
-  test: defaultconfig
+  - name: test 
+    value: defaultconfig
+
 
 auth:
   tokens:

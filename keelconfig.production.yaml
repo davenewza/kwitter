@@ -1,5 +1,6 @@
 environment:
-  test: prodconfig
+  - name: test 
+    value: prodconfig
 
 auth:
   tokens:

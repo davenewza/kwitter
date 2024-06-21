@@ -1,5 +1,6 @@
 environment:
-  test: stagingconfig
+  - name: test 
+    value: stagingconfig
 
 auth:
   tokens:
